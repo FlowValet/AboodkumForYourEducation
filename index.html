@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aboodkum for Your Education | The Abood School of Handology</title>
+    <title>Aboodkum for Your Education | الأكاديمية الملكية</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Poppins:wght@300;400;600&family=Amiri:wght@400;700&display=swap');
 
         :root {
             --gold: #daa520;
@@ -23,36 +22,57 @@
             scroll-behavior: smooth;
         }
 
-        /* Fixed Top Bar */
-        .brand-header {
+        body.rtl {
+            direction: rtl;
+            font-family: 'Amiri', serif;
+        }
+
+        /* Fixed Top Utility Bar */
+        .utility-bar {
             background: #000;
-            padding: 15px 10px;
-            text-align: center;
-            border-bottom: 3px solid var(--gold);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: flex-end;
+            border-bottom: 1px solid #333;
             position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            z-index: 2000;
+        }
+
+        body.rtl .utility-bar {
+            justify-content: flex-start;
+        }
+
+        .lang-switch {
+            background: var(--gold);
+            color: #000;
+            padding: 6px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 900;
+            border: 2px solid white;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        /* Branding Header */
+        .brand-header {
+            background: #000;
+            padding: 40px 10px;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
         }
 
         .brand-header h2 {
             font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: var(--gold);
             margin: 0;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
         }
 
-        .brand-header p {
-            margin: 5px 0 0 0;
-            font-size: 0.85rem;
-            color: #aaa;
-            font-style: italic;
-        }
-
-        /* Hero Section */
         header {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1511193311914-0346f16efe90?auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1511193311914-0346f16efe90?auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             padding: 100px 20px;
@@ -62,361 +82,247 @@
 
         header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin: 0;
             color: #fff;
-            text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .slogan {
             background: var(--gold);
             color: #000;
-            padding: 10px 30px;
+            padding: 12px 35px;
             font-weight: 900;
             font-style: italic;
             display: inline-block;
-            margin-top: 25px;
+            margin-top: 30px;
             border-radius: 50px;
-            text-transform: uppercase;
+            font-size: 1.1rem;
         }
 
         .aspirin-alert {
             background: #ff4d4d;
             color: white;
-            padding: 10px 20px;
+            padding: 15px 25px;
             font-weight: bold;
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 25px;
             border-radius: 4px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
             border: 2px solid white;
             animation: blink 2s infinite;
+            max-width: 800px;
         }
 
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
 
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 80px 20px;
-        }
+        .container { max-width: 1200px; margin: auto; padding: 80px 20px; }
+        .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 3.2rem; color: var(--gold); margin-bottom: 10px; }
+        .welcome-text { text-align: center; font-size: 1.4rem; color: #ccc; max-width: 950px; margin: 0 auto 60px; line-height: 1.8; }
 
-        .section-title {
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
+        .course-card { background: var(--card-bg); border: 1px solid #30363d; border-radius: 20px; padding: 40px; cursor: pointer; transition: 0.4s; }
+        .course-card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .course-card h3 { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top: 0; text-align: center; }
+        
+        .syllabus { max-height: 0; overflow: hidden; transition: max-height 0.6s ease; color: #b1bac4; font-size: 1rem; line-height: 1.8; }
+        .course-card.active .syllabus { max-height: 600px; margin-top: 25px; padding-top: 25px; border-top: 1px solid #333; }
+
+        /* Centered About Section */
+        .dean-section { 
+            background: #111; 
+            padding: 60px; 
+            border-radius: 25px; 
+            margin-top: 100px; 
+            display: flex; 
+            flex-direction: column; /* Stacked for better centering */
+            align-items: center; 
             text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 15px;
+            gap: 20px; 
+            border: 2px solid var(--gold); 
         }
-
-        .intro-p {
-            text-align: center;
-            font-size: 1.3rem;
-            color: #ccc;
-            max-width: 900px;
-            margin: 0 auto 60px;
-            line-height: 1.6;
+        .dean-icon { font-size: 7rem; margin-bottom: 10px; }
+        .dean-text h2 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 2.2rem; margin: 0 0 20px 0; }
+        .dean-quote { 
+            font-family: 'Playfair Display', serif; 
+            font-style: italic; 
+            font-size: 1.5rem; 
+            color: #fff; 
+            margin-bottom: 25px; 
+            display: block; 
+            max-width: 800px;
         }
+        .dean-bio { font-size: 1.15rem; line-height: 1.8; color: #ccc; max-width: 800px; margin: 0 auto; }
 
-        /* Interactive Course Grid */
-        .course-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
+        .registration { background: #fff; color: #000; padding: 60px; border-radius: 15px; margin-top: 100px; text-align: center; }
+        .registration h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; }
+        input, select { width: 100%; max-width: 600px; padding: 18px; margin: 15px auto; border-radius: 8px; border: 2px solid #ddd; display: block; font-size: 1rem; font-family: inherit; }
+        .submit-btn { background: #000; color: var(--gold); padding: 20px 80px; border: none; font-weight: 900; cursor: pointer; font-size: 1.2rem; text-transform: uppercase; margin-top: 20px; transition: 0.3s; }
+        
+        #error-msg { display: none; margin-top: 30px; color: #721c24; background: #f8d7da; padding: 30px; border-radius: 8px; border: 2px solid #f5c6cb; font-weight: bold; max-width: 700px; margin-left: auto; margin-right: auto; }
 
-        .course-card {
-            background: var(--card-bg);
-            border: 1px solid #30363d;
-            border-radius: 15px;
-            padding: 35px;
-            cursor: pointer;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-
-        .course-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(218, 165, 32, 0.2);
-        }
-
-        .course-card h3 {
-            color: var(--gold);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .syllabus {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #b1bac4;
-        }
-
-        .course-card.active .syllabus {
-            max-height: 350px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #30363d;
-        }
-
-        /* Dean Section */
-        .dean-section {
-            background: #111;
-            padding: 60px;
-            border-radius: 20px;
-            margin: 100px auto 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            border: 2px solid var(--gold);
-            max-width: 900px;
-            justify-content: center;
-        }
-
-        .dean-icon { font-size: 6rem; flex-shrink: 0; }
-
-        .dean-text h2 {
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            margin: 0 0 15px 0;
-        }
-
-        .dean-text .souls-quote {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.4rem;
-            color: #fff;
-            margin-bottom: 20px;
-            display: block;
-            border-left: 3px solid var(--gold);
-            padding-left: 15px;
-        }
-
-        /* Registration Form */
-        .registration {
-            background: #fff;
-            color: #000;
-            padding: 60px;
-            border-radius: 10px;
-            margin-top: 100px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-        }
-
-        .registration h2 { font-family: 'Cinzel', serif; font-size: 2.2rem; }
-
-        input, select {
-            width: 100%;
-            max-width: 500px;
-            padding: 15px;
-            margin: 12px auto;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Poppins', sans-serif;
-            display: block;
-        }
-
-        .submit-btn {
-            background: #000;
-            color: var(--gold);
-            padding: 18px 60px;
-            border: none;
-            font-weight: 900;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 1.1rem;
-            margin-top: 20px;
-        }
-
-        #error-msg {
-            display: none;
-            margin: 30px auto 0 auto;
-            background: #f8d7da;
-            color: #721c24;
-            padding: 25px;
-            border-radius: 5px;
-            font-weight: bold;
-            border: 2px solid #f5c6cb;
-            max-width: 600px;
-            text-align: left;
-            line-height: 1.5;
-        }
-
-        footer {
-            text-align: center;
-            padding: 80px 20px;
-            background: #000;
-            color: #555;
-            font-size: 0.85rem;
-            border-top: 2px solid var(--gold);
-        }
-
-        .floating-hand {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 3rem;
-            opacity: 0.4;
-            pointer-events: none;
-        }
+        footer { text-align: center; padding: 80px 20px; background: #000; color: #777; border-top: 2px solid var(--gold); }
     </style>
 </head>
 <body>
 
+<div class="utility-bar">
+    <div class="lang-switch" onclick="toggleLang()" id="langBtn">العربية</div>
+</div>
+
 <div class="brand-header">
-    <h2>Aboodkum for Your Education</h2>
-    <p>Teaching you how to get 'Hand' while everyone else is still sorting their cards.</p>
+    <h2 id="brand-name">Aboodkum for Your Education</h2>
 </div>
 
 <header>
-    <h1>The Royal Academy of Melds & Deception</h1>
-    <div class="subtitle" style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; color: #ccc; margin-top: 15px;">
-        The Abood School of Handology: Because it's not just a game, it's a lifestyle.
-    </div>
-    <div class="slogan">"Because your math isn't mathing, but Abood’s is."</div>
+    <h1 id="hero-title">The Royal Academy of Melds & Deception</h1>
+    <div class="slogan" id="hero-slogan">"Because your math isn't mathing, but Abood’s is."</div>
     <br>
-    <div class="aspirin-alert">⚠️ MEDICAL ADVISORY: ALWAYS REMEMBER TO TAKE YOUR ASPIRIN PILL AFTER LOSING TO ABOOD.</div>
+    <div class="aspirin-alert" id="aspirin-warn">⚠️ MEDICAL ADVISORY: ALWAYS REMEMBER TO TAKE YOUR ASPIRIN PILL AFTER LOSING TO ABOOD.</div>
 </header>
 
 <div class="container">
-    <h2 class="section-title">Strategic Curriculum</h2>
-    
-    <p class="intro-p">
-        <strong>Welcome to the Abood School of Handology.</strong> Because it's not just a game, it's a lifestyle. Below are our accredited courses for the Spring 2026 semester. Click a course to reveal the official syllabus.
-    </p>
+    <h2 class="section-title" id="curriculum-title">Strategic Curriculum</h2>
+    <p class="welcome-text" id="welcome-msg">Teaching you how to get 'Hand' while everyone else is still sorting their cards. Below are our accredited courses for the Spring 2026 semester. Click a course to reveal the official syllabus.</p>
 
-    <div class="course-grid">
-        <div class="course-card" onclick="this.classList.toggle('active')">
-            <h3>Hand 101: The 5-Minute Stare</h3>
-            <p>How to overthink your cards until the Father-in-law falls asleep.</p>
-            <div class="syllabus">
-                • <strong>The Father-in-law Syndrome:</strong> A detailed study on why some people take 10 minutes to drop one card.<br>
-                • Advanced techniques for criticizing slow players while holding the game hostage.<br>
-                • Throwing a card and pretending it was a "strategic trap" after realizing it was a mistake.
-            </div>
-        </div>
+    <div class="course-grid" id="courseGrid"></div>
 
-        <div class="course-card" onclick="this.classList.toggle('active')">
-            <h3>Medical Handology 202</h3>
-            <p>Managing Heart Health after a devastating defeat.</p>
-            <div class="syllabus">
-                • <strong>Aspirin Administration:</strong> How to hand your Father-in-law a pill immediately after you win to prevent a stress attack.<br>
-                • The psychology of telling losers: "Calm down, it's just a game (that I won)."<br>
-                • Pre-emptive medical warnings for high-stakes family gatherings.
-            </div>
-        </div>
-
-        <div class="course-card" onclick="this.classList.toggle('active')">
-            <h3>Advanced Poker Face</h3>
-            <p>How to pretend you don't need that 7 of Hearts your father-in-law just threw.</p>
-            <div class="syllabus">
-                • Maintaining 60 BPM while watching your key card hit the discard pile.<br>
-                • The subtle art of not lunging across the table.<br>
-                • Mastering the phrase: "Oh, I didn't even want that one anyway."
-            </div>
-        </div>
-
-        <div class="course-card" onclick="this.classList.toggle('active')">
-            <h3>The Art of the Infinite Lecture</h3>
-            <p>Post-game analysis that nobody asked for.</p>
-            <div class="syllabus">
-                • How to extend a victory speech into a 45-minute seminar.<br>
-                • Explaining to your Father-in-law why his "overthinking" is his greatest weakness.<br>
-                • 100 ways to say "I told you so" without repeating yourself.
-            </div>
-        </div>
-
-        <div class="course-card" onclick="this.classList.toggle('active')">
-            <h3>Abood’s Masterclass</h3>
-            <p>From 14 Cards to Victory: (Or how to stay stuck with 14 cards forever).</p>
-            <div class="syllabus">
-                • Why going out early is for amateurs.<br>
-                • Hoarding pairs until the tension in the room reaches a medical emergency level.<br>
-                • The joy of dropping 14 cards at once while everyone else is still sorting sequences.
-            </div>
-        </div>
-
-        <div class="course-card" onclick="this.classList.toggle('active')">
-            <h3>Theory of Probability</h3>
-            <p>Why the card you need is always at the bottom of the pile.</p>
-            <div class="syllabus">
-                • Mathematical proofs showing your sequence will never be completed.<br>
-                • Why Abood is guaranteed to draw the Joker before you.<br>
-                • Learning to enjoy the lecture Abood gives you after winning.
-            </div>
-        </div>
-    </div>
-
-    <!-- Centered Dean Section -->
     <div class="dean-section">
         <div class="dean-icon">🧔🏻‍♂️</div>
         <div class="dean-text">
-            <h2>About the Professor</h2>
-            <span class="souls-quote">"I don't play cards with people. I play cards with their souls. If you lost to me, it's not because I'm lucky, it's because you haven't graduated from Aboodkum yet."</span>
-            <p>"Professor Abood is a world-renowned strategist who founded Aboodkum to ensure that no one ever has to suffer the embarrassment of a 'minus' score again. He is particularly known for his specialized medical advice for his <strong>Father-in-law</strong> regarding post-game Aspirin intake."</p>
+            <h2 id="about-prof">About the Professor</h2>
+            <span class="dean-quote" id="dean-quote-text">"I don't play cards with people. I play cards with their souls. If you lost to me, it's not because I'm lucky, it's because you haven't graduated from Aboodkum yet."</span>
+            <p class="dean-bio" id="prof-bio">Professor Abood is a world-renowned strategist who founded Aboodkum to ensure that no one ever has to suffer the embarrassment of a 'minus' score again. He is particularly known for his specialized medical advice for his Father-in-law regarding post-game Aspirin intake.</p>
         </div>
     </div>
 
-    <!-- Enrollment Form -->
     <div class="registration" id="enroll">
-        <h2>Official Enrollment 2026</h2>
-        <p>Apply for a certified Professional Diploma in Handology.</p>
+        <h2 id="reg-title">Official Enrollment 2026</h2>
         <form id="regForm">
-            <input type="text" placeholder="Full Legal Name" required>
-            <input type="email" placeholder="Official Email Address" required>
-            
-            <select required>
-                <option value="">Current Skill Level</option>
-                <option value="noob">Total Beginner (Regularly needs medical attention after games)</option>
-                <option value="slow">Chronic Overthinker (Takes 10 mins per turn)</option>
-                <option value="med">Medium (Can count to 51, sometimes)</option>
-                <option value="pro">Pro (Still nothing compared to Abood)</option>
-            </select>
-
-            <select required>
-                <option value="">Why do you lose to Abood?</option>
-                <option value="math">My math isn't mathing (Scorekeeping error)</option>
-                <option value="overthink">I spend too long thinking and still lose</option>
-                <option value="aspirin">I forgot to take my Aspirin before the match</option>
-                <option value="fate">The cards simply fear the Dean</option>
-            </select>
-
-            <button type="submit" class="submit-btn">Apply for Education</button>
+            <input type="text" id="input-name" placeholder="Full Legal Name" required>
+            <input type="email" id="input-email" placeholder="Official Email Address" required>
+            <select id="select-level" required></select>
+            <select id="select-reason" required></select>
+            <button type="submit" class="submit-btn" id="submit-txt">Apply for Education</button>
         </form>
-        <div id="error-msg">
-            <strong>APPLICATION DENIED:</strong> Professor Abood has reviewed your history and determined you are "un-teachable." Your enrollment has been permanently blocked. Please continue to lose in silence (and take your Aspirin). All rights reserved.
-        </div>
+        <div id="error-msg"></div>
     </div>
 </div>
 
-<div class="floating-hand">🃟 🂱 🂡</div>
-
 <footer>
-    <p>&copy; 2026 Aboodkum for Your Education Global. ISO 9001: Hand & Heart Certified. All Rights Reserved.</p>
+    <p id="footer-copy-1">© 2026 Aboodkum for Your Education Global. All Rights Reserved.</p>
+    <p id="footer-copy-2">ISO 9001:2026 Hand & Heart Certified. Member of the International Card Association.</p>
 </footer>
 
 <script>
-    document.getElementById('regForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        document.getElementById('error-msg').style.display = 'block';
-        window.scrollTo({
-            top: document.getElementById('enroll').offsetTop,
-            behavior: 'smooth'
-        });
-    });
-</script>
+const translations = {
+    en: {
+        btn: "العربية",
+        brand: "Aboodkum for Your Education",
+        hero: "The Royal Academy of Melds & Deception",
+        slogan: '"Because your math isn\'t mathing, but Abood’s is."',
+        aspirin: "⚠️ MEDICAL ADVISORY: ALWAYS REMEMBER TO TAKE YOUR ASPIRIN PILL AFTER LOSING TO ABOOD.",
+        curriculum: "Strategic Curriculum",
+        welcome: "Teaching you how to get 'Hand' while everyone else is still sorting their cards. Below are our accredited courses for the Spring 2026 semester. Click a course to reveal the official syllabus.",
+        about: "About the Professor",
+        quote: '"I don\'t play cards with people. I play cards with their souls. If you lost to me, it\'s not because I\'m lucky, it\'s because you haven\'t graduated from Aboodkum yet."',
+        bio: "Professor Abood is a world-renowned strategist who founded Aboodkum to ensure that no one ever has to suffer the embarrassment of a 'minus' score again. He is particularly known for his specialized medical advice for his Father-in-law regarding post-game Aspirin intake.",
+        regTitle: "Official Enrollment 2026",
+        namePh: "Full Legal Name",
+        emailPh: "Official Email Address",
+        submit: "Apply for Education",
+        footer1: "© 2026 Aboodkum for Your Education Global. All Rights Reserved.",
+        footer2: "ISO 9001:2026 Hand & Heart Certified. Member of the International Card Association.",
+        denied: "APPLICATION DENIED: Professor Abood has determined you are 'un-teachable.' Your enrollment has been permanently blocked. Please continue to lose in silence (and take your Aspirin).",
+        levels: [["", "Current Skill Level"], ["noob", "Beginner"], ["slow", "Overthinker"], ["pro", "Pro"]],
+        reasons: [["", "Why do you lose?"], ["math", "Math error"], ["overthink", "Overthinking"], ["fil", "FIL slow play"]],
+        courses: [
+            { t: "Hand 101: The 5-Minute Stare", p: "How to overthink your cards until the Father-in-law falls asleep.", s: "• Detailed study on why some people take 10 minutes to drop one card.<br>• Techniques for criticizing slow players while holding the game hostage.<br>• Pretending mistakes were 'strategic traps'." },
+            { t: "Medical Handology 202", p: "Managing Heart Health after a devastating defeat.", s: "• Aspirin Administration: How to hand your Father-in-law a pill immediately after you win.<br>• Psychology of telling losers: 'Calm down, it's just a game (that I won).'<br>• Pre-emptive medical warnings." },
+            { t: "Advanced Poker Face", p: "How to pretend you don't need that 7 of Hearts.", s: "• Maintaining 60 BPM while watching your key card hit the discard pile.<br>• The subtle art of not lunging across the table.<br>• Mastering: 'Oh, I didn't even want that one anyway.'" },
+            { t: "The Art of the Infinite Lecture", p: "Post-game analysis that nobody asked for.", s: "• Extending a victory speech into a 45-minute seminar.<br>• Explaining to your FIL why overthinking is his greatest weakness.<br>• 100 ways to say 'I told you so' without repeating yourself." },
+            { t: "Abood’s Masterclass", p: "From 14 Cards to Victory.", s: "• Why going out early is for amateurs.<br>• Hoarding pairs until tension reaches medical emergency levels.<br>• Dropping 14 cards at once while others are sorting." },
+            { t: "Theory of Probability", p: "Why the card you need is at the bottom.", s: "• Mathematical proofs showing your sequence will never be completed.<br>• Why Abood is guaranteed to draw the Joker before you.<br>• Learning to enjoy the lecture Abood gives you." }
+        ]
+    },
+    ar: {
+        btn: "English",
+        brand: "جامعة عبودكم للتعليم العالي",
+        hero: "الأكاديمية الملكية لفنون الهند والخداع",
+        slogan: '"لأنه حساباتك دايماً مش راكبة على بعض، بس حسابات عبود بمحلها."',
+        aspirin: "⚠️ تنبيه طبي: تذكر دائماً أخذ حبة الأسبرين بعد الخسارة أمام البروفيسور عبود.",
+        curriculum: "المناهج الاستراتيجية المعتمدة",
+        welcome: "بنعلمك كيف تنزل 'هند' والكل لسه برتب بورقه. إليكم المساقات المعتمدة لفصل ربيع ٢٠٢٦.",
+        about: "نبذة عن البروفيسور",
+        quote: '"أنا ما بلعب ورق مع بشر، أنا بلعب مع أرواحهم. إذا خسرت قدامي، مش لأني محظوظ، بس لأنك لسه ما تخرجت من جامعة عبودكم."',
+        bio: "البروفيسور عبود استراتيجي عالمي أسس جامعة عبودكم لضمان عدم تعرض أي شخص لإحراج 'الناقص' مرة أخرى. مشهور بنصائحه الطبية لنسيبه بخصوص موعد أخذ حبة الأسبرين بعد الجولة.",
+        regTitle: "التسجيل الرسمي لعام ٢٠٢٦",
+        namePh: "الاسم القانوني الثلاثي",
+        emailPh: "البريد الإلكتروني الرسمي",
+        submit: "تقديم طلب التحاق",
+        footer1: "© ٢٠٢٦ جامعة عبودكم للتعليم العالي العالمية. جميع الحقوق محفوظة.",
+        footer2: "حاصلون على شهادة الأيزو ٩٠٠١ لعام ٢٠٢٦. عضو في اتحاد الورق الدولي.",
+        denied: "تم رفض الطلب: البروفيسور عبود قرر إنك 'حالة مستعصية' وغير قابل للتعلم. تم حظرك نهائياً للحفاظ على نسبة فوز الجامعة. كمل حياتك بالخسارة وبصمت (ولا تنسى حبة الأسبرين).",
+        levels: [["", "مستوى المهارة"], ["noob", "مبتدئ"], ["slow", "صاحب صفنات"], ["pro", "محترف"]],
+        reasons: [["", "ليش بتخسر؟"], ["math", "حساباتي غلط"], ["overthink", "بظل أصفن"], ["fil", "النسيب بطيء"]],
+        courses: [
+            { t: "هند ١٠١: صفنة الخمس دقائق", p: "كيف تفكر لدرجة تخلي النسيب ينام على الطاولة.", s: "• دراسة ليش في ناس بتقعد سنة لترمي ورقة واحدة.<br>• تقنيات لانتقاد اللاعب البطيء وأنت أصلاً معطل اللعب.<br>• التظاهر بأن الغلطة هي 'فخ استراتيجي'." },
+            { t: "الهندولوجيا الطبية ٢٠٢", p: "إدارة صحة القلب بعد الهزيمة.", s: "• فن توزيع الأسبرين للنسيب فوراً بعد ما تفوز عليه.<br>• سيكولوجية جملة: 'روق يا رجل، هي مجرد لعبة'.<br>• تحذيرات طبية استباقية للجلسات العائلية." },
+            { t: "الوجه البارد (Poker Face)", p: "كيف تمثل إنك مش محتاج السبعة كبة.", s: "• الحفاظ على نبضك طبيعي وأنت شايف ورقتك بتنرمي بالكومة.<br>• الفن الخفي في عدم القفز فوق الطاولة من القهر.<br>• إتقان جملة: 'أصلاً ما كنت بدي إياها'." },
+            { t: "فن المحاضرة اللانهائية", p: "تحليل ما بعد القيم اللي ما حد طلبه.", s: "• كيف تحول خطاب الفوز لندوة تعليمية مدتها ٤٥ دقيقة.<br>• شرح للنسيب ليش 'تفكيره الزائد' هو أكبر نقطة ضعف.<br>• ١٠٠ طريقة لقول 'أنا حكيتلك' بدون تكرار." },
+            { t: "ماستركلاس عبود", p: "من ١٤ ورقة إلى الفوز الساحق.", s: "• ليش التنزيل البدري مخصص فقط للأطفال والمبتدئين.<br>• تجميع الورق لغاية ما يوصل التوتر لمرحلة الطوارئ الطبية.<br>• متعة تنزيل ١٤ ورقة مرة وحدة والكل لسه برتب." },
+            { t: "نظرية الاحتمالات", p: "ليش الورقة اللي بدك إياها دايماً بالآخر.", s: "• براهين رياضية بتثبت إن سيرتك مستحيل تكمل.<br>• ليش عبود دايماً بضمن يسحب الجوكر قبلك بكل جولة.<br>• تعلم كيف تستمتع بالمحاضرة اللي بعطيك إياها عبود." }
+        ]
+    }
+};
 
+let currentLang = 'en';
+
+function toggleLang() {
+    currentLang = currentLang === 'en' ? 'ar' : 'en';
+    document.body.classList.toggle('rtl', currentLang === 'ar');
+    render();
+}
+
+function render() {
+    const l = translations[currentLang];
+    document.getElementById('langBtn').innerText = l.btn;
+    document.getElementById('brand-name').innerText = l.brand;
+    document.getElementById('hero-title').innerText = l.hero;
+    document.getElementById('hero-slogan').innerText = l.slogan;
+    document.getElementById('aspirin-warn').innerText = l.aspirin;
+    document.getElementById('curriculum-title').innerText = l.curriculum;
+    document.getElementById('welcome-msg').innerText = l.welcome;
+    document.getElementById('about-prof').innerText = l.about;
+    document.getElementById('dean-quote-text').innerText = l.quote;
+    document.getElementById('prof-bio').innerText = l.bio;
+    document.getElementById('reg-title').innerText = l.regTitle;
+    document.getElementById('input-name').placeholder = l.namePh;
+    document.getElementById('input-email').placeholder = l.emailPh;
+    document.getElementById('submit-txt').innerText = l.submit;
+    document.getElementById('footer-copy-1').innerText = l.footer1;
+    document.getElementById('footer-copy-2').innerText = l.footer2;
+
+    const grid = document.getElementById('courseGrid');
+    grid.innerHTML = l.courses.map(c => `
+        <div class="course-card" onclick="this.classList.toggle('active')">
+            <h3>${c.t}</h3>
+            <p>${c.p}</p>
+            <div class="syllabus">${c.s}</div>
+        </div>
+    `).join('');
+
+    document.getElementById('select-level').innerHTML = l.levels.map(o => `<option value="${o[0]}">${o[1]}</option>`).join('');
+    document.getElementById('select-reason').innerHTML = l.reasons.map(o => `<option value="${o[0]}">${o[1]}</option>`).join('');
+}
+
+document.getElementById('regForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const msg = document.getElementById('error-msg');
+    msg.innerText = translations[currentLang].denied;
+    msg.style.display = 'block';
+});
+
+render();
+</script>
 </body>
 </html>
